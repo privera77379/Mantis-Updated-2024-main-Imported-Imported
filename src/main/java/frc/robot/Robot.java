@@ -4,10 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.LEDPattern;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -23,6 +28,8 @@ public class Robot extends TimedRobot {
   public static boolean limelight = false;
   private Command m_autonomousCommand;
   public static SendableChooser<Integer> autoMode;
+  private AddressableLED m_led;
+  private AddressableLEDBuffer m_ledBuffer;
 
 
   private RobotContainer m_robotContainer;
@@ -52,6 +59,10 @@ public class Robot extends TimedRobot {
     autoMode.addOption("2 Ball Auto With Turn", 2);
     autoMode.addOption("2 Ball Auto Straight", 1);
     SmartDashboard.putData(autoMode);
+
+  
+
+   
   }
 
   /**
@@ -63,20 +74,26 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+  
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    RobotContainer.led.rainbow();
+  }
 
   @Override
-  public void disabledPeriodic() {}
-
+  public void disabledPeriodic() {
+  RobotContainer.led.vorTXStreak();
+}
+  // RobotContainer.led.noteCheck();
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
@@ -191,6 +208,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    RobotContainer.led.vorTXStreak();
     auton = false;
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
