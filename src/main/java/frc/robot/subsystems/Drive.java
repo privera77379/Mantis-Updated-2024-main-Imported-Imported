@@ -96,9 +96,22 @@ public class Drive extends SubsystemBase {
       } 
     
       else if(!Robot.auton && !Robot.limelight){
-     double triggerSpeed = (RobotContainer.main.getL2Axis() - RobotContainer.main.getRightX());
-    // double triggerSpeed = (RobotContainer.main.getR2Axis() -(- RobotContainer.main.getL2Axis()));
+     
+     //Rivera Drive below
+        double triggerSpeed = (RobotContainer.main.getL2Axis() - RobotContainer.main.getRightX());
     racingDrive(VortxMath.applyDeadzone(triggerSpeed, Constants.Ydeadzone), VortxMath.applyDeadzone(RobotContainer.main.getLeftX(),Constants.Xdeadzone));
+    
+    //Tank Drive below
+    //tankDrive(RobotContainer.main.getLeftY(),RobotContainer.main.getRightY());
+
+    //Arcade Drive below(one stick)
+     //arcadeDrive(RobotContainer.main.getLeftY()*-1,RobotContainer.main.getLeftX());
+
+     //Arcade Drive below(split sticks)
+    //arcadeDrive(RobotContainer.main.getLeftY()*-1,RobotContainer.main.getRightR2());
+  //}
+
+    
     }
     /*else if(!Robot.auton && !Robot.limelight){
      double triggerSpeed = (RobotContainer.main.getR2Axis() -(- RobotContainer.main.getL2Axis()));

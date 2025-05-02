@@ -86,12 +86,13 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    RobotContainer.led.rainbow();
+   RobotContainer.led.handleFirst256LEDsWithSpecificColors();
   }
 
   @Override
   public void disabledPeriodic() {
-  RobotContainer.led.vorTXStreak();
+    //was normal VorTXStreak, but rivera changed to VorTXStreak2 for testing
+  RobotContainer.led.vorTXStreakLast15();
 }
   // RobotContainer.led.noteCheck();
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
@@ -208,7 +209,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    RobotContainer.led.vorTXStreak();
+    
     auton = false;
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
@@ -221,7 +222,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    RobotContainer.led.vorTXStreak();
+  }
 
   @Override
   public void testInit() {
